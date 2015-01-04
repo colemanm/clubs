@@ -13,7 +13,7 @@ class Clubs < Thor
 
   desc "leagues", "Show a list of leagues"
   def leagues
-    file = JSON.parse(`curl -s https://web.fulcrumapp.com/shares/82982e4c55707a34.geojson`)
+    file = JSON.parse(`curl -s #{CLUBS}`)
     full_list = []
     file["features"].each do |l|
       league = l["properties"]["league"]
@@ -21,6 +21,18 @@ class Clubs < Thor
     end
     leagues = full_list.uniq.sort
     puts leagues
+  end
+
+  desc "clubs", "Show a list of clubs"
+  def clubs
+    file = JSON.parse(`curl -s #{CLUBS}`)
+    clubs = ""
+    file["features"].each do |l|
+      name = l["properties"]["name"]
+      slug = l["properties"]["name"].parameterize
+      clubs << "#{name},#{slug}\n"
+    end
+    puts clubs
   end
 
   desc "stadia", "Generate image of football ground"
@@ -45,7 +57,9 @@ class Clubs < Thor
         type: "FeatureCollection",
         features: [
           type: "Feature",
-          properties: {},
+          properties: {
+            name: name
+          },
           geometry: {
             type: "Polygon",
             coordinates: [
@@ -76,8 +90,9 @@ class Clubs < Thor
         ]
       }
 
-      cmd = "#{TOGEOTIFF} image --format jpg --geojson \'#{geojson.to_json}\' --zoom 18 --output \"~/Desktop/Clubs/#{slug}.jpg\""
+      cmd = "#{TOGEOTIFF} image --format jpg --geojson \'#{geojson.to_json}\' -s 1024 --output \"~/Desktop/Clubs/#{slug}.jpg\""
       # puts cmd
+      # puts geojson.to_json
       system(cmd)
     end
   end
