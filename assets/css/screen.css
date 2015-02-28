@@ -1,6 +1,12 @@
+html, body, .h100, #map  {
+    height: 100%;
+}
+
 body {
   padding-top: 50px;
   font-family: 'Lato', sans-serif;
+  padding: 50px 0 0 0;
+  margin: 0;
 }
 
 .sub-header {
@@ -55,7 +61,6 @@ body {
 
 #map {
   width: auto;
-  height: auto;
 }
 
 @media (min-width: 768px) {
