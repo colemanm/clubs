@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clubs</title>
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/screen.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Clubs of Europe</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Download <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://web.fulcrumapp.com/shares/82982e4c55707a34.csv">CSV</a></li>
+                <li><a href="https://web.fulcrumapp.com/shares/82982e4c55707a34.geojson">GeoJSON</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <div class="row">
+            <div class="col-xs-8 col-md-8">
+              <input type="text" class="form-control search" placeholder="Filter" />
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+            </div>
+          </div>
+          <div class="sidebar-table">
+            <table class="table table-hover" id="feature-list">
+              <thead class="hidden">
+                <tr>
+                  <th>Icon</th>
+                <tr>
+                <tr>
+                  <th>Name</th>
+                <tr>
+                <tr>
+                  <th>Chevron</th>
+                <tr>
+              </thead>
+              <tbody class="list"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-offset-2 main" id="map">
+        </div>
+        <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoiY29sZW1hbm0iLCJhIjoieW8wN2lTNCJ9.j1zlDeYFSVAl8XWjaHY-5w';
+        var map = L.mapbox.map('map', 'colemanm.gga7agbd')
+            .setView([40, -74.50], 9);
+
+        var featureLayer = L.mapbox.featureLayer()
+            .loadURL('https://web.fulcrumapp.com/shares/82982e4c55707a34.geojson')
+            .addTo(map);
+
+        featureLayer.on('ready', function() {
+            // featureLayer.getBounds() returns the corners of the furthest-out markers,
+            // and map.fitBounds() makes sure that the map contains these.
+            map.fitBounds(featureLayer.getBounds());
+        });
+        </script>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
