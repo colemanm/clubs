@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="-480 -480 960 960">
+   <defs>
+      <clipPath id="Rahmen">
+         <path d="M 238,0 V -223 H -224 V 208 H 245 V 0 z"/>
+      </clipPath>
+   </defs>
+   <circle r="457.5" fill="#003798"/>
+   <g stroke="white" fill="none">
+      <circle r="420" stroke-width="15"/>
+      <g stroke-width="60" clip-path="url(#Rahmen)" transform="matrix(1,-.14,0,1,0,0)">
+         <path d="M -194,-250 V 250 M -67,-240 L -145,-22 L -67,240
+                  M 65,-243 C -22,-94 2,-64 22,-15 S 80,54 20,240"/>
+         <path d="M 245,-193 h -58 a 32,38 0,0,0 -32,38 V 142 a 32,36 0,0,0 32,36 h 65
+                  M 245,-187 h -35 a 55,59 0,0,0 -55,59 V 117 a 55,58 0,0,0 55,58 h 60"/>
+      </g>
+   </g>
+</svg>
