@@ -15,7 +15,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/screen.css" rel="stylesheet">
-    <script src="assets/js/map.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,9 +56,15 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+          <form class="navbar-form navbar-right" >
+            <input id="searchbox" type="text" class="form-control" placeholder="Search...">
           </form>
+          <!-- <form class="navbar-form navbar-right" role="search">
+            <div class="form-group has-feedback">
+              <input id="searchbox" type="text" placeholder="Search" class="form-control">
+              <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+            </div>
+          </form> -->
         </div>
       </div>
     </nav>
@@ -94,25 +99,13 @@
         </div>
         <div class="col-md-offset-2 main" id="map">
         </div>
-        <script>
-        L.mapbox.accessToken = 'pk.eyJ1IjoiY29sZW1hbm0iLCJhIjoieW8wN2lTNCJ9.j1zlDeYFSVAl8XWjaHY-5w';
-        var map = L.mapbox.map('map', 'colemanm.gga7agbd');
-
-        var featureLayer = L.mapbox.featureLayer()
-            .loadURL('https://web.fulcrumapp.com/shares/82982e4c55707a34.geojson')
-            .addTo(map);
-
-        featureLayer.on('ready', function() {
-            // featureLayer.getBounds() returns the corners of the furthest-out markers,
-            // and map.fitBounds() makes sure that the map contains these.
-            map.fitBounds(featureLayer.getBounds());
-        });
-
-        </script>
       </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/map.js"></script>
   </body>
 </html>
